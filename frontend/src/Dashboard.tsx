@@ -11,6 +11,7 @@ import {
 import Grid from "@material-ui/core/Grid";
 import clsx from "clsx";
 import React, { useState } from "react";
+import Chart from "./Chart";
 import SearchBar from "./SearchBar";
 
 const useStyles = makeStyles((themeObject: Theme) =>
@@ -28,7 +29,7 @@ const useStyles = makeStyles((themeObject: Theme) =>
       zIndex: themeObject.zIndex.drawer + 1,
     },
     fixedHeight: {
-      height: 240,
+      height: 840,
     },
   })
 );
@@ -36,6 +37,7 @@ const useStyles = makeStyles((themeObject: Theme) =>
 const Dashboard = () => {
   const classes = useStyles();
   const [isDarkMode, setDarkMode] = useState(true);
+  const [stock, setStock] = useState("");
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const theme = React.useMemo(
@@ -52,11 +54,15 @@ const Dashboard = () => {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <Container maxWidth="lg">
-          <SearchBar isDarkMode={isDarkMode} setDarkMode={setDarkMode} />
+          <SearchBar
+            onSubmit={setStock}
+            isDarkMode={isDarkMode}
+            setDarkMode={setDarkMode}
+          />
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <p>CHART GOES HERE</p>
+                <Chart />
               </Paper>
             </Grid>
           </Grid>
