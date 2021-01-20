@@ -22,7 +22,13 @@ from todo import views                            # add this
 
 router = routers.DefaultRouter()                      # add this
 router.register(r'todos', views.TodoView, 'todo')     # add this
+#router.register(r'todo-update', views.TodoUpdate, 'todo-update')     # add this
+#
+# urlpatterns = [
+#     path('admin/', admin.site.urls),         path('api/', include(router.urls))                # add this
+# ]
 
 urlpatterns = [
-    path('admin/', admin.site.urls),         path('api/', include(router.urls))                # add this
-]
+    path('admin/', admin.site.urls),
+    path('api/', include('todo.urls')),
+ ]
